@@ -1,0 +1,33 @@
+{
+  "name": "react-express-examplar",
+  "version": "1.0.0",
+  "description": "A simple emitter. Object register with the emitter to listen for an event, and when the event occurs, the objects are notified.\r Something tells the dispatcher it wants to listen for an event with a command called `register` or `on`. \r Here is an example:\r ```javascript\r     exampleDispatcher.on('app-start',function(){alert(\"Hello\")});\r     `setTimeout(function(){exampleDispatcher.emit('app-start')},1000);` // hello\r ```\r The dispatcher's `on` or `register` function will either take two arguments, or take one argument and return a promise. The first argument is a string called the `type` of the listener. The `type` is basically the name of the event, like `sound-done` or `button-clicked`. The second argument, or the promise returned, is resolve every time the event occurs.\r Note that some promise architectures do not allow promises to be resolved more than once. To avoid this confusion, it is recommended that you use a callback.\r It is important to understand dispatcher are just a loose set of architecture rules and there are no hard and fast requirements.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babelify": "^6.1.1",
+    "browser-sync": "^2.7.2",
+    "browserify": "^10.2.1",
+    "gulp": "^3.8.11",
+    "gulp-live-server": "0.0.14",
+    "reactify": "^1.1.1"
+  },
+  "dependencies": {
+    "babel": "^5.5.6",
+    "body-parser": "^1.12.4",
+    "cors": "^2.6.0",
+    "ejs": "^2.3.1",
+    "express": "^4.12.4",
+    "guid": "0.0.12",
+    "jquery": "^2.1.4",
+    "mongoose": "^4.0.3",
+    "node-jsx": "^0.13.3",
+    "react": "^0.13.3",
+    "react-tools": "^0.13.3",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

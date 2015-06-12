@@ -1,0 +1,21 @@
+{
+  "name": "react-express-examplar",
+  "version": "0.0.0",
+  "authors": [
+    "Daniel Stern <daniel@danielstern.ca>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.3",
+    "es6-shim": "~0.31.2",
+    "jquery": "~2.1.4",
+    "skeleton": "~2.0.4"
+  }
+}
