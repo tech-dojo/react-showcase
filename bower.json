@@ -14,8 +14,11 @@
   ],
   "dependencies": {
     "react": "~0.13.3",
-    "es6-shim": "~0.31.2",
+    "es6-shim": "~0.32.0",
     "jquery": "~2.1.4",
     "skeleton": "~2.0.4"
+  },
+  "resolutions": {
+    "es6-shim": "~0.31.2"
   }
 }
