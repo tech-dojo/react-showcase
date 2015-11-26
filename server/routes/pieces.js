@@ -1,17 +1,17 @@
 
 module.exports = function(app){
 
-	var GroceryItem = require('./../models/GroceryItem.js');
+	var ShowPiece = require('./../models/ShowPiece.js');
 
-	app.route('/api/items')
+	app.route('/api/pieces')
 	.get(function(req,res){
-		GroceryItem.find(function(error,doc){
+		ShowPiece.find(function(error,doc){
 			res.send(doc);
 		})
 	})
 	.post(function(req,res){
-		var groceryItem = new GroceryItem(req.body);
-		groceryItem.save(function(err,data){
+		var showPiece = new ShowPiece(req.body);
+		showPiece.save(function(err,data){
 			if (err) {
 				res.status(501).send();
 			} else {
@@ -21,9 +21,9 @@ module.exports = function(app){
 		;
 	});
 
-	app.route('/api/items/:id')
+	app.route('/api/pieces/:id')
 	.get(function(req,res){
-		GroceryItem.find({_id:req.params.id},function(error,doc){
+		ShowPiece.find({_id:req.params.id},function(error,doc){
 			if (error){
 				return res.status(404).send();
 			}
@@ -33,14 +33,14 @@ module.exports = function(app){
 		})
 	})
 	.delete(function(req,res){
-		GroceryItem.find({_id:req.params.id})
+		ShowPiece.find({_id:req.params.id})
 		.remove(function(){
 		res.status(202)
 			.send();
 		})
 	})
 	.patch(function(req,res){
-		GroceryItem.findOne({
+		ShowPiece.findOne({
 			_id:req.body._id
 		},function(err,doc){
 			if (!doc){

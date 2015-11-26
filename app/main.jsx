@@ -1,16 +1,25 @@
 "use strict";
 
 let dispatcher = require('./dispatcher.js');
-let GroceryItemList = require('./components/GroceryItemList.jsx');
-let React = require('react/addons');
-let GroceryItemStore = require('./stores/GroceryItemStore.jsx');
+let ShowCase = require('./components/ShowCase.jsx');
+let React = require('react');
+let ReactDom = require('react-dom');
+let ShowPieceStore = require('./stores/ShowPieceStore.jsx');
+let injectTapEventPlugin = require("react-tap-event-plugin");
 
-var items = GroceryItemStore.getGroceryItems();
+//Needed for onTouchTap
+//Can go away when react 1.0 release
+//Check this repo:
+//https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
-GroceryItemStore.onChange(()=>{
-	items = GroceryItemStore.getGroceryItems();
+
+var pieces = ShowPieceStore.getShowPieces();
+
+ShowPieceStore.onChange(()=>{
+	pieces = ShowPieceStore.getShowPieces();
 	render();
 })
 function render(){
-	React.render(<GroceryItemList items={items}/>,mount);
+	ReactDom.render(<ShowCase pieces={pieces}/>,mount);
 }
