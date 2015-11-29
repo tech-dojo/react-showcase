@@ -28,9 +28,9 @@ class Header extends React.Component {
                 ref="leftNav" 
                 docked={false} 
                 header={<div className="menu_title">        <FontIcon className="fa fa-paint-brush" color="#00bcd4"/>Menu</div>}>
-            <MenuItem className="menuItem" onTouchTap={this._menuClick} index={0}><Link to="/" className="menuLink">Showcase</Link></MenuItem>
-            <MenuItem className="menuItem" onTouchTap={this._menuClick} index={1}><Link to="/about" className="menuLink">About</Link></MenuItem>
-            <MenuItem className="menuItem" onTouchTap={this._menuClick} index={2}><Link to="/signin" className="menuLink">Signin</Link></MenuItem>
+            <Link to="/" className="menuLink"><MenuItem className="menuItem" onTouchTap={this._menuClick} index={0}>Showcase</MenuItem></Link>
+            <Link to="/about" className="menuLink"><MenuItem className="menuItem" onTouchTap={this._menuClick} index={1}>About</MenuItem></Link>
+            <Link to="/signin" className="menuLink"><MenuItem className="menuItem" onTouchTap={this._menuClick} index={2}>Signin</MenuItem></Link>
             <div className="menuSubheader"><SubheaderMenuItem
               index={3}
               text='Social' 

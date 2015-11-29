@@ -21,7 +21,7 @@ module.exports = function(app){
 		;
 	});
 
-	app.route('/api/pieces/:id')
+	app.route('/showpiece/api/pieces/:id')
 	.get(function(req,res){
 		ShowPiece.find({_id:req.params.id},function(error,doc){
 			if (error){

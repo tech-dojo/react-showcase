@@ -19,6 +19,7 @@ class ShowCase extends React.Component {
     constructor(){
         super();
         ShowPieceStore.fetchShowcase();
+                console.log('wtf');
         this.state = getCatalog();
         this._onChange = this._onChange.bind( this );
         

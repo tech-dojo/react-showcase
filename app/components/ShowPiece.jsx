@@ -21,6 +21,7 @@ class ShowPiece extends React.Component {
     constructor(props){
         super();
         ShowPieceStore.fetchShowPiece(props.params.id);
+        
         this.state = getShowPiece();
         this._onChange = this._onChange.bind( this );
         

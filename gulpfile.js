@@ -7,7 +7,7 @@ var browserify = require('browserify');
 var reactify = require('reactify');
 
 gulp.task('live-server',function(){
-	var server = new LiveServer('server/main.js');
+	var server = new LiveServer('server/server.js');
 	server.start();
 });
 
