@@ -1,6 +1,18 @@
 var dispatcher = require("./../dispatcher.js");
 
 module.exports = {
+    list:function(){
+		dispatcher.dispatch({
+			type:"show-piece:list",
+			payload:""
+		})
+	},
+    get:function(pieceId){
+		dispatcher.dispatch({
+			type:"show-piece:get",
+			payload:pieceId
+		})
+	},
 	add:function(piece){
 		dispatcher.dispatch({
 			type:"show-piece:add",

@@ -23,6 +23,7 @@
     "ejs": "^2.3.1",
     "express": "^4.12.4",
     "guid": "0.0.12",
+    "gulp-babel": "^6.1.1",
     "history": "^1.13.1",
     "jquery": "^2.1.4",
     "material-ui": "^0.13.3",

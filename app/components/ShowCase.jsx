@@ -1,24 +1,41 @@
 "use strict";
 
-let 
-//GroceryItem = require('./GroceryItem.jsx'),
-//	GroceryListAddItem = require('./GroceryListAddItem.jsx'),
-    Header = require('./Header.jsx'),
-	React = require('react'),
-    GridList = require('material-ui/lib/grid-list/grid-list'),
-    GridTile = require('material-ui/lib/grid-list/grid-tile'),
-    IconButton = require('material-ui/lib/icon-button'),
-    FontIcon = require('material-ui/lib/font-icon'),
-    TextField = require('material-ui/lib/text-field'),
-    FloatingActionButton = require('material-ui/lib/floating-action-button');
+import React from 'react';
+import GridList from 'material-ui/lib/grid-list/grid-list';
+import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import IconButton from 'material-ui/lib/icon-button';
+import FontIcon from 'material-ui/lib/font-icon';
+import TextField from 'material-ui/lib/text-field';
+import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import ShowPieceStore from './../stores/ShowPieceStore.jsx';
+import { Link } from 'react-router';
+
+function getCatalog() {
+    return {pieces: ShowPieceStore.getShowPieces()}
+}
 
 
-module.exports = React.createClass({
+class ShowCase extends React.Component {
+    constructor(){
+        super();
+        ShowPieceStore.fetchShowcase();
+        this.state = getCatalog();
+        this._onChange = this._onChange.bind( this );
+        
+    }
+    componentWillMount() {
+        ShowPieceStore.onChange(this._onChange);
+    }
+    componentWillUnmount() {
+        ShowPieceStore.removeChangeListener( this._onChange );
+    }
+    _onChange() {
+        this.setState( getCatalog() );
+    }
 
-	render:function(){
+	render(){
 		return (
 			<div>
-            <Header />
                 <div className="container marginTop">
                 <div className="search">
                     <TextField
@@ -27,27 +44,33 @@ module.exports = React.createClass({
                                         Search Artist, Title, Medium
                                 </span>}
                       hintStyle={{color: 'rgba(0, 0, 0, 0.41)'}}/>
-            <FloatingActionButton iconClassName="fa fa-plus fa-2" secondary={true} />
+                <Link to="/about">
+                <FloatingActionButton iconClassName="fa fa-plus fa-2" secondary={true} />
+            </Link>
                 </div>
                 <GridList
                   cellHeight={250}>
-                  {this.props.pieces.map((tile) => {
+                  {this.state.pieces.map((tile) => {
                         return(
-                            <GridTile
-                                title={tile.title}
-                                subtitle={<span>by <b>{tile.author}</b></span>}
-                                actionIcon={<IconButton><FontIcon className="fa fa-heart-o" color="white"/></IconButton>}> 
+                            <Link to={`/showpiece/${tile._id}`} key={tile._id}>
+                                <GridTile
+                                title={<span><span className="title-showcase">{tile.title}</span> {tile.medium ? '|' : ''} {tile.medium}</span>}
+                                
+                                subtitle={<div><span>by <b>{tile.artist}</b></span><span className="likes-showcase">{tile.likes} <FontIcon className="fa fa-heart-o" color="white"/></span></div>}
+                                actionIcon={<IconButton></IconButton>}> 
                                 <img src={tile.url} />
-                            </GridTile>
+                            </GridTile></Link>
                         )
                     })}
                 </GridList>
-
+<br/>
                 </div>                       
 			</div>
 		)
 	}
-})
+}
+
+export default ShowCase;
 
     //				{this.props.items.map((item,index)=>{
     //					return (

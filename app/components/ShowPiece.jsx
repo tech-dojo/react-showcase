@@ -1,3 +1,145 @@
+import React from 'react';
+const Card = require('material-ui/lib/card/card');
+const CardActions = require('material-ui/lib/card/card-actions');
+const CardExpandable = require('material-ui/lib/card/card-expandable');
+const CardHeader = require('material-ui/lib/card/card-header');
+const CardMedia = require('material-ui/lib/card/card-media');
+const CardText = require('material-ui/lib/card/card-text');
+const CardTitle = require('material-ui/lib/card/card-title');
+const Paper = require('material-ui/lib/paper');
+
+
+import IconButton from 'material-ui/lib/icon-button';
+import FontIcon from 'material-ui/lib/font-icon';
+import ShowPieceStore from './../stores/ShowPieceStore.jsx';
+import { Link } from 'react-router';
+
+function getShowPiece() {
+    return {piece: ShowPieceStore.getShowPiece()}
+}
+class ShowPiece extends React.Component {
+    constructor(props){
+        super();
+        ShowPieceStore.fetchShowPiece(props.params.id);
+        this.state = getShowPiece();
+        this._onChange = this._onChange.bind( this );
+        
+    }
+    componentWillMount() {
+        ShowPieceStore.onChange(this._onChange);
+    }
+    componentWillUnmount() {
+        ShowPieceStore.removeChangeListener( this._onChange );
+    }
+    _onChange() {
+        this.setState( getShowPiece() );
+    }
+
+	render(){
+		return (
+            
+			 <div className="container marginTop">
+            <Paper zDepth={1} className="mediaPiece">
+            <Card>
+              <CardMedia 
+                overlay={
+            <CardTitle 
+                title={<span className="title-piece">{this.state.piece.title} <span className="sub">{this.state.piece.medium ? '|' : ''} {this.state.piece.medium}</span></span>} 
+                subtitle={<div>
+                            <span className="piece-likes">
+                                <i className="fa fa-heart" color="white"/> 
+                             {this.state.piece.likes}
+                            </span>
+                            <span className="like">
+                                <IconButton>
+                                    <FontIcon className="fa fa-heart-o" color="white"/>
+                                </IconButton>
+                            </span>
+                          </div>}
+             />}
+            >
+                <img className="piece" src={this.state.piece.url}/>
+              </CardMedia>
+            <CardTitle title={<span>Artist: {this.state.piece.artist}</span>} subtitle={<span>Contributed by  {this.state.piece.contributor}</span>}/>
+            </Card>
+     </Paper>
+            <br/>
+            </div>
+		)
+	}
+}
+
+export default ShowPiece;
+
+
+
+
+
+
+
+//
+//class ShowCase extends React.Component {
+//    constructor(){
+//        super();
+//        ShowPieceStore.fetchShowcase();
+//        this.state = getCatalog();
+//        this._onChange = this._onChange.bind( this );
+//        
+//    }
+//    componentWillMount() {
+//        ShowPieceStore.onChange(this._onChange);
+//    }
+//    _onChange() {
+//        this.setState( getCatalog() );
+//    }
+//
+//	render(){
+//		return (
+//			<div>
+//                <div className="container marginTop">
+//                <div className="search">
+//                    <TextField
+//                      hintText={<span>
+//                                    <FontIcon className="fa fa-search fa-1" color="rgb(158, 158, 158)"/> 
+//                                        Search Artist, Title, Medium
+//                                </span>}
+//                      hintStyle={{color: 'rgba(0, 0, 0, 0.41)'}}/>
+//                <Link to="/about">
+//                <FloatingActionButton iconClassName="fa fa-plus fa-2" secondary={true} />
+//            </Link>
+//                </div>
+//                <GridList
+//                  cellHeight={250}>
+//                  {this.state.pieces.map((tile) => {
+//                        return(
+//                            <Link to={`/showpiece/${tile._id}`}>
+//                                <GridTile
+//                                title={tile.title}
+//                                key={tile._id}
+//                                subtitle={<span>by <b>{tile.author}</b></span>}
+//                                actionIcon={<IconButton><FontIcon className="fa fa-heart-o" color="white"/></IconButton>}> 
+//                                <img src={tile.url} />
+//                            </GridTile></Link>
+//                        )
+//                    })}
+//                </GridList>
+//
+//                </div>                       
+//			</div>
+//		)
+//	}
+//}
+
+//export default ShowCase;
+
+    //				{this.props.items.map((item,index)=>{
+    //					return (
+    //						<GroceryItem item={item} key={"item"+index} />
+    //					)
+    //				})}
+    //				<GroceryListAddItem />
+
+
 //var dispatcher = require("./../dispatcher.js");
 //var showcaseAction = require("./../stores/ShowPieceActionCreator.jsx");
 //var React = require('react');

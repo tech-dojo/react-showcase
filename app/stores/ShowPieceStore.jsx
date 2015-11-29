@@ -5,19 +5,35 @@ let {get,post,del,patch} = require("./../RestHelper.js");
 function ShowPieceStore(){
 
 	let showPieces = [],
-		changeListeners = [];
+		changeListeners = [],
+        showPiece = {};
 
 	function triggerListeners(){
+        console.log(changeListeners);
 		changeListeners.forEach(function(listener){
+            
 			listener(showPieces)	;
 		})
 	};
 
-	get("api/pieces")
-	.then((data)=>{
-		showPieces = data;
-		triggerListeners();
-	});
+	function fetchShowcase(){
+        get("api/pieces")
+        .then((data)=>{
+            showPieces = data;
+            triggerListeners();
+        });
+    };
+    
+    function fetchShowPiece(id){
+
+        get(`api/pieces/${id}`)
+        .then((data)=>{
+            showPiece = data[0];
+            console.log(showPiece);
+            triggerListeners();
+        });
+    };
+    
 
 
 	function removeShowPiece(piece){
@@ -56,10 +72,19 @@ function ShowPieceStore(){
 	function getShowPieces(){
 		return showPieces;
 	};
+    function getShowPiece(){
+		return showPiece;
+	};
 
 	function onChange(listener){
 		changeListeners.push(listener);
 	}
+    
+    function removeChangeListener(listener){
+        var index = changeListeners.findIndex(i => i === listener);
+		changeListeners.splice(index, 1);
+	}
+
 
 	dispatcher.register(function(event){
 		var split = event.type.split(':');
@@ -84,8 +109,14 @@ function ShowPieceStore(){
 
 	return {
 		getShowPieces:getShowPieces,
-		onChange:onChange
+		onChange:onChange,
+        fetchShowcase: fetchShowcase,
+        fetchShowPiece: fetchShowPiece,
+        getShowPiece: getShowPiece,
+        removeChangeListener: removeChangeListener
 	}
 }
 
 module.exports = new ShowPieceStore();
+
+

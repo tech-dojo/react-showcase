@@ -17,13 +17,14 @@ app.use(cors())
 .use(parser.json())
 .get('/',function(req,res){
 
-		var app = React.createFactory(require('./../app/components/ShowCase.jsx'));
-		ShowPiece.find(function(error,doc){
-			var generated = ReactDOMServer.renderToString(app({
-				pieces:doc
-			}));
-			res.render('./../app/index.ejs',{reactOutput:generated});
-		})
+//		var app = React.createFactory(require('./../app/components/ShowCase.jsx'));
+//		ShowPiece.find(function(error,doc){
+//			var generated = ReactDOMServer.renderToString(app({
+//				pieces:doc
+//			}));
+//			res.render('./../app/index.ejs',{reactOutput:generated});
+//		})
+    res.render('./../app/index.ejs',{reactOutput:''});
 })
 .use(express.static(__dirname + '/../.tmp'))
 .listen(7777);

@@ -1,41 +1,4 @@
-/*
-html {
-	color: darkslategray;
-	background-color: #fffefd;
-}
-*{
-    font-family: 'Roboto', sans-serif;
-}
-body {
-	padding-top: 3rem;
-}
 
-.purchased-false {
-	  height: 40px;
-    background-color: red;
-}
-
-.purchased-true {
-	  height: 40px;
-    background-color: green;
-}
-
-.strikethrough {
-	text-decoration: line-through;
-	color: slategray;
-}
-
-h1 {
-	text-decoration: underline;
-	text-decoration-style: wavy;
-}
-
-.grocery-addItem {
-	margin-top: 1rem;
-	padding-top: 1rem;
-}
-
-*/
 button, .button {
     margin-bottom: 0;
 }
@@ -55,6 +18,13 @@ button, .button {
 .main_title .fa{
      margin-left: 3px;
 }
+.header_title{
+    text-decoration: none;
+    color:white;
+}
+.header_title:hover{
+    color: rgba(0, 0, 0, 0.87);
+}
 .social_links{
     line-height: 64px;
 }
@@ -66,6 +36,21 @@ button, .button {
 .marginTop{
     margin-top: 30px;
 }
+
+.menuLink{
+    text-decoration: none;
+    color: black;
+}
+.menuLink:hover{
+    background-color: rgba(236, 236, 236, 0.62);
+}
+.menuItem:hover{
+    background-color: rgba(236, 236, 236, 0.62);
+        color: #1EAEDB;
+}
+.menuSubheader{
+    margin: 0 16px;
+}
 .search {
     margin-bottom: 20px;
     text-align: center;
@@ -76,4 +61,42 @@ button, .button {
 }
 .search .fa-1{
     margin: 5px 5px 5px 10px;
+}
+.likes-showcase{
+    font-size: 1.3em;
+    top: 20px;
+    right: 20px;
+    position: absolute;
+    text-shadow: 1px 1px 1px #4B4B4C;
+    color: rgb(0, 232, 232);
+}
+.likes-showcase .fa{
+    padding-left: 5px;
+    
+}
+.like{
+    top: 20px;
+    right: 20px;
+    position: absolute;
+}
+.piece-likes{
+    font-size: 1em;
+}
+.piece-likes .fa{
+    margin-right: 10px;
+}
+.title-showcase{
+    font-size:1.4em;
+    font-weight: 300;
+}
+
+.mediaPiece{
+    max-width: 70%;
+    margin: auto;
+    max-height: 70%;
+}
+
+.title-piece .sub{
+    font-size: 0.8em;
+    font-weight: 100;
 }

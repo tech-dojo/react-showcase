@@ -3,10 +3,9 @@ var mongoose = require('mongoose');
 
 var ShowPieceSchema = {
 	title:String,
-    author:String,
+    artist:String,
     url:String,
     pending: Boolean,
-	id:String,
 	likes:{
 		type: Number,
 		default: 0
