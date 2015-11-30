@@ -9,8 +9,7 @@
   "author": "Shama H. <shama@tech-dojo.org>",
   "license": "MIT",
     "scripts": {
-		"start": "node server/server.js",
-		"postinstall": "bower install --config.interactive=false"
+		"start": "node server/server.js"
 	},
   "devDependencies": {
     "babelify": "^6.1.1",
