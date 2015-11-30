@@ -41,7 +41,13 @@ var app = new express();
 app.set('port', (process.env.PORT || 7777));
 
 // serve static assets normally
-app.use('/static', express.static(path.normalize(path.join(__dirname, '/../.tmp')), { maxAge: 86400000 }));
+process.env.PWD = process.cwd();
+
+app.set('/static', path.join(process.env.PWD, '/../.tmp'));
+
+app.use(express.static(path.join(process.env.PWD, '/../.tmp')));
+
+//app.use('/static', express.static(path.normalize(path.join(__dirname, '/../.tmp')), { maxAge: 86400000 }));
 
 app.use(function(req, res, next) {
     GLOBAL.navigator = {
