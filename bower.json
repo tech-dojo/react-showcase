@@ -16,7 +16,8 @@
     "react": "^0.14.0",
     "es6-shim": "~0.32.0",
     "jquery": "~2.1.4",
-    "skeleton": "~2.0.4"
+    "skeleton": "~2.0.4",
+    "components-font-awesome": "~4.5.0"
   },
   "resolutions": {
     "es6-shim": "~0.31.2"

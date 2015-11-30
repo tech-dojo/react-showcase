@@ -19,8 +19,8 @@ class ShowCase extends React.Component {
     constructor(props, context){
         super(props, context);
         ShowPieceStore.fetchShowcase();
-//        this.state = getCatalog();
         this.state = context.data;
+        this.state['searchString'] = '';
         this._onChange = this._onChange.bind( this );
         
     }
@@ -33,14 +33,42 @@ class ShowCase extends React.Component {
     _onChange() {
         this.setState( getCatalog() );
     }
+    
+    _handleSearch(e){
+
+        // If you comment out this line, the text box will not change its value.
+        // This is because in React, an input cannot change independently of the value
+        // that was assigned to it. In our case this is this.state.searchString.
+        console.log("testsearch");
+        this.setState({searchString:e.target.value});
+    }
 
 	render(){
+        var pieces = this.state.pieces,
+            searchString = this.state.searchString.trim().toLowerCase();
+
+
+        if(searchString.length > 0){
+
+            // We are searching. Filter the results.
+
+            pieces = pieces.filter(function(l){
+                var result = l.artist.toLowerCase().match( searchString ) ||
+                    l.title.toLowerCase().match( searchString );
+                if(l.medium){
+                    result = result || l.medium.toLowerCase().match( searchString ); 
+                }
+                    return result;
+            });
+
+        }
 		return (
+            
 			<div>
                 <div className="container marginTop">
                 <div className="search">
                     <TextField
-                      hintText={<span>
+                      value={this.state.searchString} onChange={this._handleSearch.bind(this)} hintText={<span>
                                     <FontIcon className="fa fa-search fa-1" color="rgb(158, 158, 158)"/> 
                                         Search Artist, Title, Medium
                                 </span>}
@@ -51,13 +79,13 @@ class ShowCase extends React.Component {
                 </div>
                 <GridList
                   cellHeight={250}>
-                  {this.state.pieces.map((tile) => {
+                  {pieces.map((tile) => {
                         return(
                             <Link to={`/showpiece/${tile._id}`} key={tile._id}>
                                 <GridTile
                                 title={<span><span className="title-showcase">{tile.title}</span> {tile.medium ? '|' : ''} {tile.medium}</span>}
                                 
-                                subtitle={<div><span>by <b>{tile.artist}</b></span><span className="likes-showcase">{tile.likes} <FontIcon className="fa fa-heart-o" color="white"/></span></div>}
+                                subtitle={<div><span>by <b>{tile.artist}</b></span><span className="likes-showcase">{tile.likes} <FontIcon className="fa fa-heart" color="#E61E1E"/></span></div>}
                                 actionIcon={<IconButton></IconButton>}> 
                                 <img src={tile.url} />
                             </GridTile></Link>
