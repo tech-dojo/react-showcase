@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/showcase',function(){
+var uri = process.env.MONGOLAB_URI || 'mongodb://localhost/showcase';
+mongoose.connect(uri,function(){
 	require('./seed.js');
 });

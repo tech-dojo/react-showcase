@@ -8,6 +8,10 @@
   },
   "author": "Shama H. <shama@tech-dojo.org>",
   "license": "MIT",
+    "scripts": {
+		"start": "node server/server.js",
+		"postinstall": "bower install --config.interactive=false"
+	},
   "devDependencies": {
     "babelify": "^6.1.1",
     "browser-sync": "^2.7.2",
