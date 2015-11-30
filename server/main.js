@@ -38,6 +38,8 @@ require('./database.js');
 
 var app = new express();
 
+app.set('port', (process.env.PORT || 7777));
+
 // serve static assets normally
 app.use('/static', express.static(__dirname + '/../.tmp'));
 
@@ -89,7 +91,9 @@ app.use(cors())
     }
   })
 })
-.listen(7777);
+.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 //		var app = React.createFactory(require('./../app/components/ShowCase.jsx'));
 //		ShowPiece.find(function(error,doc){
