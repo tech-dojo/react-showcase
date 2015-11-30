@@ -20,7 +20,11 @@ component: require('./../app/components/Header'),
 indexRoute: {
     component: ShowCase
 },
-childRoutes: [{
+childRoutes: [
+    {
+    path: 'signin',
+    component: require('./../app/components/Signin')
+},{
     path: 'about',
     component: require('./../app/components/About')
 }, {
@@ -72,6 +76,10 @@ app.use(cors())
                 res.render('./../app/index.ejs',{reactOutput:generated});
 		})
                
+       }else{
+            data = {pieces: []};
+               var generated = renderToString(<DataWrapper data={ data }><RoutingContext {...renderProps} /></DataWrapper>);
+                res.render('./../app/index.ejs',{reactOutput:generated});   
        }
         
       
