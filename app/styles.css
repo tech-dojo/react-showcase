@@ -97,3 +97,8 @@ button, .button {
     font-size: 0.8em;
     font-weight: 100;
 }
+
+.about{
+    text-align: center;
+    padding:20px;
+}
