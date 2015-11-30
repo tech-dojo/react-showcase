@@ -10,9 +10,10 @@ import { renderToString } from 'react-dom/server';
 import { match, RoutingContext } from 'react-router';
 import createLocation from 'history/lib/createLocation';
 import ShowCase from './../app/components/ShowCase';
+import DataWrapper from './../app/components/DataWrapper';
 const path = require('path');
     
-    
+var data= {};    
 const routes = {
 path: '/',
 component: require('./../app/components/Header'),
@@ -57,9 +58,23 @@ app.use(cors())
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
-        console.log(req.path);
-      var generated = renderToString(<RoutingContext {...renderProps} />);
-        res.render('./../app/index.ejs',{reactOutput:generated});
+       if(req.url == "/"){
+           ShowPiece.find(function(error,doc){
+               data = {pieces: doc};
+               var generated = renderToString(<DataWrapper data={ data }><RoutingContext {...renderProps} /></DataWrapper>);
+                res.render('./../app/index.ejs',{reactOutput:generated});
+           });
+       }else if(req.url.match(/\/showpiece\/.*/)){
+           var id = req.url.split(/\/showpiece\//)[1];
+           ShowPiece.find({_id:id},function(error,doc){
+			data = {pieces: doc[0]};
+               var generated = renderToString(<DataWrapper data={ data }><RoutingContext {...renderProps} /></DataWrapper>);
+                res.render('./../app/index.ejs',{reactOutput:generated});
+		})
+               
+       }
+        
+      
     } else {
         next();
 //      res.status(404).send('Not found')
@@ -85,7 +100,6 @@ module.exports = app;
 app.use(function(req, res, next) {
     if(req.url.match(/.+\/static/)){
         var url = req.url.match(/\/static.*/);
-        console.log(url[0]);
         res.redirect(url[0]);
     }else
         res.status(404).send('Sorry cant find that!');

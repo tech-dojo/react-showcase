@@ -15,14 +15,13 @@ import ShowPieceStore from './../stores/ShowPieceStore.jsx';
 import { Link } from 'react-router';
 
 function getShowPiece() {
-    return {piece: ShowPieceStore.getShowPiece()}
+    return {pieces: ShowPieceStore.getShowPiece()}
 }
 class ShowPiece extends React.Component {
-    constructor(props){
-        super();
-        ShowPieceStore.fetchShowPiece(props.params.id);
-        
-        this.state = getShowPiece();
+    constructor(props, context){
+        super(props, context);
+        ShowPieceStore.fetchShowPiece(props.params.id);  
+        this.state = context.data;
         this._onChange = this._onChange.bind( this );
         
     }
@@ -45,11 +44,11 @@ class ShowPiece extends React.Component {
               <CardMedia 
                 overlay={
             <CardTitle 
-                title={<span className="title-piece">{this.state.piece.title} <span className="sub">{this.state.piece.medium ? '|' : ''} {this.state.piece.medium}</span></span>} 
+                title={<span className="title-piece">{this.state.pieces.title} <span className="sub">{this.state.pieces.medium ? '|' : ''} {this.state.pieces.medium}</span></span>} 
                 subtitle={<div>
                             <span className="piece-likes">
                                 <i className="fa fa-heart" color="white"/> 
-                             {this.state.piece.likes}
+                             {this.state.pieces.likes}
                             </span>
                             <span className="like">
                                 <IconButton>
@@ -59,9 +58,9 @@ class ShowPiece extends React.Component {
                           </div>}
              />}
             >
-                <img className="piece" src={this.state.piece.url}/>
+                <img className="piece" src={this.state.pieces.url}/>
               </CardMedia>
-            <CardTitle title={<span>Artist: {this.state.piece.artist}</span>} subtitle={<span>Contributed by  {this.state.piece.contributor}</span>}/>
+            <CardTitle title={<span>Artist: {this.state.pieces.artist}</span>} subtitle={<span>Contributed by  {this.state.pieces.contributor}</span>}/>
             </Card>
      </Paper>
             <br/>
@@ -69,6 +68,10 @@ class ShowPiece extends React.Component {
 		)
 	}
 }
+
+ShowPiece.contextTypes = {
+    data: React.PropTypes.object.isRequired
+};
 
 export default ShowPiece;
 

@@ -17,7 +17,7 @@ else {
 
 export default (props) => {
   return (
-      
+ 
   <Router history={history}>
     <Route path="/" component={Header}>
         <IndexRoute component={ShowCase}/>

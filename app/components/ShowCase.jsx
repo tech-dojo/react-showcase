@@ -16,11 +16,11 @@ function getCatalog() {
 
 
 class ShowCase extends React.Component {
-    constructor(){
-        super();
+    constructor(props, context){
+        super(props, context);
         ShowPieceStore.fetchShowcase();
-                console.log('wtf');
-        this.state = getCatalog();
+//        this.state = getCatalog();
+        this.state = context.data;
         this._onChange = this._onChange.bind( this );
         
     }
@@ -70,6 +70,11 @@ class ShowCase extends React.Component {
 		)
 	}
 }
+
+ShowCase.contextTypes = {
+    data: React.PropTypes.object.isRequired
+};
+
 
 export default ShowCase;
 
