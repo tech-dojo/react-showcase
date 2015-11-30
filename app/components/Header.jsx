@@ -38,14 +38,14 @@ class Header extends React.Component {
             <LinkMenuItem
               index={4}
               text='GitHub'
-              payload="https://github.com/callemall/material-ui"
+              payload="https://github.com/tech-dojo"
               target="_blank"
             className="menuLink"
             />
             <LinkMenuItem
               index={4}
               text='Twitter'
-              payload="https://github.com/callemall/material-ui"
+              payload="https://twitter.com/dojo_tech"
               target="_blank"
                 className="menuLink"
             />
@@ -54,10 +54,10 @@ class Header extends React.Component {
 				<AppBar
                   title={<Link to="/" className="header_title"><span className="main_title">{_title} <FontIcon className="fa fa-paint-brush"/></span></Link>}
                 onLeftIconButtonTouchTap={this._handleClick}>
-                <a className="social_links" target="_blank" href="https://github.com/callemall/material-ui">    <FontIcon
+                <a className="social_links" target="_blank" href="https://github.com/tech-dojo">    <FontIcon
         className="fa fa-github"
         color="white"/></a>
-            <a className="social_links" target="_blank" href="https://github.com/callemall/material-ui"><FontIcon
+            <a className="social_links" target="_blank" href="https://twitter.com/dojo_tech"><FontIcon
         className="fa fa-twitter"
         color="white"/></a>
             </AppBar>

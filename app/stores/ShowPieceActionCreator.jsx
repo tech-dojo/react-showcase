@@ -19,15 +19,15 @@ module.exports = {
 			payload:piece
 		})
 	},
-	buy:function(piece){
+	like:function(piece){
 		dispatcher.dispatch({
-			type:"show-piece:buy",
+			type:"show-piece:like",
 			payload:piece
 		})
 	},
-	unbuy:function(piece){
+	unlike:function(piece){
 		dispatcher.dispatch({
-			type:"show-piece:unbuy",
+			type:"show-piece:unlike",
 			payload:piece
 		})
 	},

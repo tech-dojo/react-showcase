@@ -12,6 +12,7 @@ const Paper = require('material-ui/lib/paper');
 import IconButton from 'material-ui/lib/icon-button';
 import FontIcon from 'material-ui/lib/font-icon';
 import ShowPieceStore from './../stores/ShowPieceStore.jsx';
+import ShowPieceAction from './../stores/ShowPieceActionCreator.jsx';
 import { Link } from 'react-router';
 
 function getShowPiece() {
@@ -23,6 +24,7 @@ class ShowPiece extends React.Component {
         ShowPieceStore.fetchShowPiece(props.params.id);  
         this.state = context.data;
         this._onChange = this._onChange.bind( this );
+        this.liked = false;
         
     }
     componentWillMount() {
@@ -33,6 +35,15 @@ class ShowPiece extends React.Component {
     }
     _onChange() {
         this.setState( getShowPiece() );
+    }
+    _likeHandle(e){
+        if(!this.liked){
+            ShowPieceAction.like(this.state.pieces);
+            this.liked = true;
+        }else{
+            ShowPieceAction.unlike(this.state.pieces);
+            this.liked = false;
+        }
     }
 
 	render(){
@@ -50,9 +61,9 @@ class ShowPiece extends React.Component {
                                 <i className="fa fa-heart" color="white"/> 
                              {this.state.pieces.likes}
                             </span>
-                            <span className="like">
-                                <IconButton>
-                                    <FontIcon className="fa fa-heart-o" color="white"/>
+                            <span className="likes-showcase">
+                                <IconButton onClick={this._likeHandle.bind(this)}>
+                                    <FontIcon className={this.liked ? "fa fa-heart" : "fa fa-heart-o" } color={this.liked ? "#E61E1E": "white"}/>
                                 </IconButton>
                             </span>
                           </div>}

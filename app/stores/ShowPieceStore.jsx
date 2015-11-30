@@ -6,7 +6,7 @@ function ShowPieceStore(){
 
 	let showPieces = [],
 		changeListeners = [],
-        showPiece = {};
+        piece = {};
 
 	function triggerListeners(){
         console.log(changeListeners);
@@ -28,8 +28,7 @@ function ShowPieceStore(){
 
         get(`api/pieces/${id}`)
         .then((data)=>{
-            showPiece = data[0];
-            console.log(showPiece);
+            piece = data[0];
             triggerListeners();
         });
     };
@@ -61,19 +60,26 @@ function ShowPieceStore(){
 		})
 	}
 
-	function setShowPieceBought(piece, isPurchased){
-		var piece = showPieces.find(function(i){return i._id===piece._id});
-		piece.purchased = isPurchased || false;;
+	function likeShowPiece(piece){
+//		var piece = showPieces.find(function(i){return i._id===piece._id});
+		piece.likes = piece.likes + 1;
 		triggerListeners();
 
 		patch(`api/pieces/${piece._id}`,piece);
 	}
 
+    function unlikeShowPiece(piece){
+//		var piece = showPieces.find(function(i){return i._id===piece._id});
+		piece.likes = piece.likes - 1;
+		triggerListeners();
+
+		patch(`api/pieces/${piece._id}`,piece);
+	}
 	function getShowPieces(){
 		return showPieces;
 	};
     function getShowPiece(){
-		return showPiece;
+		return piece;
 	};
 
 	function onChange(listener){
@@ -96,11 +102,11 @@ function ShowPieceStore(){
 				case "delete":
 					removeShowPiece(event.payload);
 					break;
-				case "buy":
-					setShowPieceBought(event.payload, true);
+				case "like":
+					likeShowPiece(event.payload, true);
 					break;
-				case "unbuy":
-					setShowPieceBought(event.payload, false);
+				case "unlike":
+					unlikeShowPiece(event.payload, false);
 					break;
 			}
 		}

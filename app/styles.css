@@ -74,16 +74,13 @@ button, .button {
     padding-left: 5px;
     
 }
-.like{
-    top: 20px;
-    right: 20px;
-    position: absolute;
-}
+
 .piece-likes{
     font-size: 1em;
 }
 .piece-likes .fa{
-    margin-right: 10px;
+    color: #E61E1E;
+    margin-right: 7px;
 }
 .title-showcase{
     font-size:1.4em;
