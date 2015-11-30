@@ -32,11 +32,11 @@ module.exports = {
 			})
 		})
 	},
-	patch(url,data){
+	put(url,data){
 		return new Promise(function(success,error){
 			$.ajax({
 				url,
-				type:'PATCH',
+				type:'PUT',
 				data,
 				success,
 				error

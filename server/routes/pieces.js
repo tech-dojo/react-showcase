@@ -39,7 +39,7 @@ module.exports = function(app){
 			.send();
 		})
 	})
-	.patch(function(req,res){
+	.put(function(req,res){
 		ShowPiece.findOne({
 			_id:req.body._id
 		},function(err,doc){

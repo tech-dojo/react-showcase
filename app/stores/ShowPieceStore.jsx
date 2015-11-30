@@ -1,6 +1,6 @@
 "use strict";
 let dispatcher = require("./../dispatcher.js");
-let {get,post,del,patch} = require("./../RestHelper.js");
+let {get,post,del,put} = require("./../RestHelper.js");
 
 function ShowPieceStore(){
 
@@ -65,7 +65,7 @@ function ShowPieceStore(){
 		piece.likes = piece.likes + 1;
 		triggerListeners();
 
-		patch(`api/pieces/${piece._id}`,piece);
+		put(`api/pieces/${piece._id}`,piece);
 	}
 
     function unlikeShowPiece(piece){
@@ -73,7 +73,7 @@ function ShowPieceStore(){
 		piece.likes = piece.likes - 1;
 		triggerListeners();
 
-		patch(`api/pieces/${piece._id}`,piece);
+		put(`api/pieces/${piece._id}`,piece);
 	}
 	function getShowPieces(){
 		return showPieces;
