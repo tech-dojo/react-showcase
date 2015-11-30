@@ -11,6 +11,10 @@
     "scripts": {
 		"start": "node server/server.js"
 	},
+     "engines": {
+        "node": "5.1.0",
+        "npm": "3.3.12"
+    }, 
   "devDependencies": {
     "babelify": "^6.1.1",
     "browser-sync": "^2.7.2",
