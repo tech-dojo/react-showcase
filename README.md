@@ -1,4 +1,19 @@
-### React Web App : Showcase
+### Isomorphic React Web App : Showcase
+
+Demo: http://react-showcase.herokuapp.com/
+
+### TechStack
+- ReactJS
+- React-Router
+- Material UI
+- Express.js
+- Node.js
+- Mongoose.js
+- MongoDB
+- Gulp
+- Browserify
+- Babel
+
 
 ### Usage Instructions
 
