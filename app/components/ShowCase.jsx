@@ -6,8 +6,8 @@ import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import IconButton from 'material-ui/lib/icon-button';
 import FontIcon from 'material-ui/lib/font-icon';
 import TextField from 'material-ui/lib/text-field';
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ShowPieceStore from './../stores/ShowPieceStore.jsx';
+import ShowPieceAdd from './ShowPieceAdd.jsx';
 import { Link } from 'react-router';
 
 function getCatalog() {
@@ -22,7 +22,6 @@ class ShowCase extends React.Component {
         this.state = context.data;
         this.state['searchString'] = '';
         this._onChange = this._onChange.bind( this );
-        
     }
     componentWillMount() {
         ShowPieceStore.onChange(this._onChange);
@@ -42,8 +41,11 @@ class ShowCase extends React.Component {
         console.log("testsearch");
         this.setState({searchString:e.target.value});
     }
+    
+    
 
 	render(){
+        
         var pieces = this.state.pieces,
             searchString = this.state.searchString.trim().toLowerCase();
 
@@ -65,6 +67,7 @@ class ShowCase extends React.Component {
 		return (
             
 			<div>
+            
                 <div className="container marginTop">
                 <div className="search">
                     <TextField
@@ -73,13 +76,12 @@ class ShowCase extends React.Component {
                                         Search Artist, Title, Medium
                                 </span>}
                       hintStyle={{color: 'rgba(0, 0, 0, 0.41)'}}/>
-                <Link to="/about">
-                <FloatingActionButton iconClassName="fa fa-plus fa-2" secondary={true} />
-            </Link>
+                <ShowPieceAdd />
+
                 </div>
                 <GridList
                   cellHeight={250}>
-                  {pieces.map((tile) => {
+                  {(pieces.reverse()).map((tile) => {
                         return(
                             <Link to={`/showpiece/${tile._id}`} key={tile._id}>
                                 <GridTile
