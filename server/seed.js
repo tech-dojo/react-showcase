@@ -23,14 +23,6 @@ var initial = [
             contributor: 'eric',
               medium: 'Acrylic',
           },
-//          {
-//            url: 'https://s-media-cache-ak0.pinimg.com/736x/08/e2/41/08e2417b42e4c3b8c52addd40a22b0a1.jpg',
-//            title: 'Swing',
-//            artist: 'Danson67',
-//            likes: 1000,
-//            pending: false,
-//            contributor: 'mary',
-//          },
           {
             url: 'http://s9.favim.com/orig/130906/art-artistic-baw-black-and-white-Favim.com-901159.jpg',
             title: 'Reflection',
@@ -55,13 +47,6 @@ var initial = [
             pending: false,
             contributor: 'Cookie',
           },
-//          {
-//            url: 'http://www.webdesigncore.com/wp-content/uploads/2011/04/abstractpaintings21.jpg',
-//            title: 'Storm',
-//            artist: 'jill111',
-//            pending: false,
-//            contributor: 'Sia',
-//          },
           {
             url: 'http://public.media.smithsonianmag.com/legacy_blog/lascaux-cave-painting.jpg',
             title: 'Primal',

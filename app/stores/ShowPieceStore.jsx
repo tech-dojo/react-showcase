@@ -61,23 +61,20 @@ function ShowPieceStore(){
 	}
 
 	function likeShowPiece(piece){
-//		var piece = showPieces.find(function(i){return i._id===piece._id});
 		piece.likes = piece.likes + 1;
 		triggerListeners();
-
 		put(`api/pieces/${piece._id}`,piece);
 	}
 
     function unlikeShowPiece(piece){
-//		var piece = showPieces.find(function(i){return i._id===piece._id});
 		piece.likes = piece.likes - 1;
 		triggerListeners();
-
 		put(`api/pieces/${piece._id}`,piece);
 	}
 	function getShowPieces(){
 		return showPieces;
 	};
+    
     function getShowPiece(){
 		return piece;
 	};
@@ -90,7 +87,6 @@ function ShowPieceStore(){
         var index = changeListeners.findIndex(i => i === listener);
 		changeListeners.splice(index, 1);
 	}
-
 
 	dispatcher.register(function(event){
 		var split = event.type.split(':');
@@ -111,7 +107,6 @@ function ShowPieceStore(){
 			}
 		}
 	})
-
 
 	return {
 		getShowPieces:getShowPieces,

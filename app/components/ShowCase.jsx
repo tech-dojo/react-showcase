@@ -11,7 +11,7 @@ import ShowPieceAdd from './ShowPieceAdd.jsx';
 import { Link } from 'react-router';
 
 function getCatalog() {
-    return {pieces: ShowPieceStore.getShowPieces()}
+    return ShowPieceStore.getShowPieces();
 }
 
 
@@ -19,7 +19,8 @@ class ShowCase extends React.Component {
     constructor(props, context){
         super(props, context);
         ShowPieceStore.fetchShowcase();
-        this.state = context.data;
+        this.state = {};
+        this.state.pieces = context.data;
         this.state['searchString'] = '';
         this._onChange = this._onChange.bind( this );
     }
@@ -30,15 +31,10 @@ class ShowCase extends React.Component {
         ShowPieceStore.removeChangeListener( this._onChange );
     }
     _onChange() {
-        this.setState( getCatalog() );
+        this.setState( {'pieces':getCatalog()} );
     }
     
     _handleSearch(e){
-
-        // If you comment out this line, the text box will not change its value.
-        // This is because in React, an input cannot change independently of the value
-        // that was assigned to it. In our case this is this.state.searchString.
-        console.log("testsearch");
         this.setState({searchString:e.target.value});
     }
     
@@ -107,10 +103,3 @@ ShowCase.contextTypes = {
 
 
 export default ShowCase;
-
-    //				{this.props.items.map((item,index)=>{
-    //					return (
-    //						<GroceryItem item={item} key={"item"+index} />
-    //					)
-    //				})}
-    //				<GroceryListAddItem />

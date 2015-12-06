@@ -14,7 +14,6 @@ gulp.task('live-server',function(){
 gulp.task('bundle',function(){
 	return browserify({
 		entries:'app/main.jsx',
-//		entries:'app/components/GroceryListApp.jsx',
 		debug:true,
 	})
 	.transform(babelify)
