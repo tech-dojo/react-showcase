@@ -5,9 +5,9 @@ Demo: http://react-showcase.herokuapp.com/
       https://showcase-tech-dojo.c9users.io
 
 ### TechStack
-- ReactJS
-- React-Router
-- Material UI
+- ReactJS (v0.14)
+- React-Router (v1.0.0)
+- Material UI (v0.13.3)
 - Express.js
 - Node.js
 - Mongoose.js
@@ -20,7 +20,7 @@ Demo: http://react-showcase.herokuapp.com/
 ### Usage Instructions
 
 #### To run the app,
-1. Make sure `mongodb` is running in the background. 
+1. Make sure `mongodb` is running in the background.
 2. Install global dependencies with `npm install -g gulp react-tools browserify`
 3. Install dependencies with `npm install`
 4. Run app with `gulp serve`
