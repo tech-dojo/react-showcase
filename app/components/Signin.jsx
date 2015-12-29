@@ -18,12 +18,12 @@ class Signin extends React.Component {
 		this._formSubmit = this._formSubmit.bind(this);
 	}
 	_validateEmail(email) {
-		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		return re.test(email);
 	}
 	_handleEmailChange(e){
 		this.state.errorEmail = "";
-		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		if(!e.target.value){
 			this.state.errorEmail = "This field is required.";
 		}else if(!re.test(e.target.value)){
@@ -51,7 +51,7 @@ class Signin extends React.Component {
 		if(this.state.errorPassword == '' && this.state.errorEmail == ''){
 			this.setState({error : 'Signing in ...'});
 			auth.login(this.state.email, this.state.password, this.history, (loggedIn) => {
-			if (!loggedIn)
+				if (!loggedIn)
 				return this.setState({ error: "Login Failed" })
 
 			})
@@ -64,33 +64,52 @@ class Signin extends React.Component {
 	render(){
 		return (
 			<div className="container marginTop">
+
 				<Paper zDepth={1} className="mediaPiece">
+
 					<div className="about">
+
 						<h4>
 							Sign In
+
 						</h4>
+
 						<form>
-            <TextField
-                hintText="Enter Email"
-                errorText={this.state.errorEmail}
-                floatingLabelText="Email"
-                onChange={this._handleEmailChange}
-                value={this.state.email}
-            /><br/>
-            <TextField
-                hintText="Enter Password"
-                errorText={this.state.errorPassword}
-                floatingLabelText="Password"
-                onChange={this._handlePasswordChange}
-                value={this.state.password}
+							<TextField
+								hintText="Enter Email"
+								errorText={this.state.errorEmail}
+								floatingLabelText="Email"
+								onChange={this._handleEmailChange}
+								value={this.state.email}
+								/>
+							<br/>
+							<TextField
+								hintText="Enter Password"
+								errorText={this.state.errorPassword}
+								floatingLabelText="Password"
+								onChange={this._handlePasswordChange}
+								value={this.state.password}
 								type="password"
-            /><br/>
-					<RaisedButton label="Sign In" secondary={true} onClick={this._formSubmit}/>
-					<p>{this.state.error}</p>
-				</form>
+								/>
+							<br/>
+
+							<RaisedButton
+								label="Sign In"
+								secondary={true}
+								onClick={this._formSubmit}/>
+
+							<p>
+								{this.state.error}
+							</p>
+
+						</form>
+
 					</div>
+
 				</Paper>
+
 				<br/>
+
 			</div>
 		)
 	}

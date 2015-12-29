@@ -12,6 +12,6 @@ import DataWrapper from './components/DataWrapper.jsx';
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-var data= [];
+var data = [];
 
 ReactDom.render(<DataWrapper data={data}><App/></DataWrapper>,document.getElementById('mount'));

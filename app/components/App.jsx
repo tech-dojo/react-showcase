@@ -11,24 +11,26 @@ import { Router, Route, IndexRoute } from 'react-router';
 
 var history;
 if (typeof(window) !== 'undefined'){
-    history = createBrowserHistory();
+  history = createBrowserHistory();
 }
 else {
-    history = createMemoryHistory(); //This kind of history is needed for server-side rendering.
+  history = createMemoryHistory(); //This kind of history is needed for server-side rendering.
 }
 
 export default (props) => {
   return (
 
-  <Router history={history}>
-    <Route path="/" component={Header}>
+    <Router history={history}>
+      <Route path="/" component={Header}>
         <IndexRoute component={ShowCase}/>
-      <Route path="signin" component={Signin} />
-      <Route path="signout" component={SignOut} />
-      <Route path="about" component={About} />
-        <Route path="showpiece/:id" component={ShowPiece} />
-    </Route>
-  </Router>
+        <Route path="signin" component={Signin} />
+        <Route path="signout" component={SignOut} />
+        <Route path="about" component={About} />
+        <Route
+          path="showpiece/:id"
+          component={ShowPiece} />
+      </Route>
+    </Router>
 
-    );
-  }
+  );
+}

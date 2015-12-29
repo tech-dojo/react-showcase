@@ -1,20 +1,23 @@
 ### Isomorphic React Web App : Showcase
 
 Demo: http://react-showcase.herokuapp.com/
-            or
-      https://showcase-tech-dojo.c9users.io
+Sign In credentials:
+email: test@tech-dojo.org
+pass: abcd5678
 
 ### TechStack
 - ReactJS (v0.14.3)
 - React-Router (v1.0.3)
 - Material UI (v0.13.3)
 - Express.js
+- Passport
 - Node.js
 - Mongoose.js
 - MongoDB
 - Gulp
 - Browserify
 - Babel
+
 
 
 ### Usage Instructions
