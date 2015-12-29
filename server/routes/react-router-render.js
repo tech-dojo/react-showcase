@@ -5,7 +5,7 @@ import { match, RoutingContext } from 'react-router';
 import createLocation from 'history/lib/createLocation';
 import ShowCase from './../../app/components/ShowCase';
 import DataWrapper from './../../app/components/DataWrapper';
-var ShowPiece = require('./../models/ShowPiece.js');
+import ShowPiece from './../models/ShowPiece.js';
 
 module.exports = function(app){
 

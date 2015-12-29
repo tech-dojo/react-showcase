@@ -1,15 +1,12 @@
 import React from 'react';
-const Card = require('material-ui/lib/card/card');
-const CardActions = require('material-ui/lib/card/card-actions');
-const CardExpandable = require('material-ui/lib/card/card-expandable');
-const CardHeader = require('material-ui/lib/card/card-header');
-const CardMedia = require('material-ui/lib/card/card-media');
-const CardText = require('material-ui/lib/card/card-text');
-const CardTitle = require('material-ui/lib/card/card-title');
-const Paper = require('material-ui/lib/paper');
-
-
-
+import Card from 'material-ui/lib/card/card';
+import CardActions from 'material-ui/lib/card/card-actions';
+import CardExpandable from 'material-ui/lib/card/card-expandable';
+import CardHeader from 'material-ui/lib/card/card-header';
+import CardMedia from 'material-ui/lib/card/card-media';
+import CardText from 'material-ui/lib/card/card-text';
+import CardTitle from 'material-ui/lib/card/card-title';
+import Paper from 'material-ui/lib/paper';
 import IconButton from 'material-ui/lib/icon-button';
 import FontIcon from 'material-ui/lib/font-icon';
 import ShowPieceStore from './../stores/ShowPieceStore.jsx';
@@ -103,7 +100,7 @@ class ShowPiece extends React.Component {
                     </span>
                     { this.state.loggedIn &&
                       <span className="edit_delete">
-                        <IconButton onClick={this._delete.bind(this)}>
+                        <IconButton>
                           <FontIcon className="fa fa-edit" color="gray"/>
                         </IconButton>
                         <IconButton onClick={this._delete.bind(this)}>

@@ -8,6 +8,7 @@ import Header from './Header.jsx';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import createMemoryHistory from 'history/lib/createMemoryHistory';
 import { Router, Route, IndexRoute } from 'react-router';
+
 var history;
 if (typeof(window) !== 'undefined'){
     history = createBrowserHistory();

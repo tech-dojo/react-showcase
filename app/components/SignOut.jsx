@@ -1,6 +1,6 @@
 
 import React from 'react';
-const Paper = require('material-ui/lib/paper');
+import Paper from 'material-ui/lib/paper';
 import auth from './../services/Authentication';
 import { Link  } from 'react-router';
 
