@@ -1,6 +1,7 @@
 "use strict";
 let dispatcher = require("./../dispatcher.js");
 let {get,post,del,put} = require("./../RestHelper.js");
+let auth = require("./../services/Authentication.js");
 
 function ShowPieceStore(){
 
@@ -9,7 +10,6 @@ function ShowPieceStore(){
         piece = {};
 
 	function triggerListeners(){
-        console.log(changeListeners);
 		changeListeners.forEach(function(listener){
 
 			listener(showPieces)	;
@@ -35,16 +35,27 @@ function ShowPieceStore(){
 
 
 
-	function removeShowPiece(piece){
-		var index = showPieces.findIndex(x => x._id===piece._id);
+	function removeShowPiece(showpiece){
+		var index = showPieces.findIndex(x => x._id===showpiece._id);
 		var removed = showPieces.splice(index,1)[0];
-		triggerListeners();
 
 		del(`api/pieces/${piece._id}`)
-		.catch(()=>{
+		.then(()=> {
+				piece = 'deleted';
+				triggerListeners();
+		})
+		.catch((err)=>{
+			if(err.status == 401){
+				auth.logout();
+				piece = "Not Authorized";
+			}else{
+				piece = piece;
+			}
 			showPieces.splice(index,0,removed);
+
 			triggerListeners();
 		})
+
 	}
 
 	function addShowPiece(piece){
@@ -94,7 +105,7 @@ function ShowPieceStore(){
 					addShowPiece(event.payload);
 					break;
 				case "delete":
-					removeShowPiece(event.payload);
+					removeShowPiece(event.payload.data);
 					break;
 				case "like":
 					likeShowPiece(event.payload, true);

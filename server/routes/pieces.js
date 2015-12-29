@@ -2,6 +2,7 @@
 module.exports = function(app){
 
 	var showpieces = require('./../controllers/showpieces.server.controller.js');
+	var users = require('./../controllers/users.server.controller.js');
 
 	app.route('/api/pieces')
 	.get(showpieces.list)
@@ -9,7 +10,7 @@ module.exports = function(app){
 
 	app.route('/showpiece/api/pieces/:id')
 	.get(showpieces.pieceByID)
-	.delete(showpieces.delete)
+	.delete(users.requiresLogin, showpieces.delete)
 	.put(showpieces.update);
 
 }

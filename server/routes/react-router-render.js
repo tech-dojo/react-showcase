@@ -20,6 +20,9 @@ module.exports = function(app){
                 path: 'signin',
                 component: require('./../../app/components/Signin')
             },{
+              path: 'signout',
+              component: require('./../../app/components/SignOut')
+          },{
                 path: 'about',
                 component: require('./../../app/components/About')
             }, {

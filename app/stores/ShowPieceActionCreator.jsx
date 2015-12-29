@@ -31,10 +31,10 @@ module.exports = {
 			payload:piece
 		})
 	},
-	delete:function(piece){
+	delete:function(piece, history){
 		dispatcher.dispatch({
 			type:"show-piece:delete",
-			payload:piece
+			payload:{data:piece, history: history}
 		});
 	}
 

@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 let ShowPiece = require('./models/ShowPiece.js');
+var User = require('./models/User.js');
 
 mongoose.connection.db.dropDatabase();
 
@@ -12,7 +13,7 @@ var initial = [
             pending: false,
             contributor: 'Ari',
                medium: 'Oil on Canvas',
-            
+
           },
           {
             url: 'http://feminspire.com/wp-content/uploads/2013/05/modern-art.jpg',
@@ -59,3 +60,11 @@ var initial = [
 initial.forEach(function(piece){
 	new ShowPiece(piece).save();
 });
+
+var user = {
+    email: 'test@tech-dojo.org',
+    password: 'abcd5678',
+    provider: 'local'
+};
+user = new User(user);
+user.save();

@@ -3,9 +3,21 @@
 import express from 'express';
 import cors from 'cors';
 var parser = require('body-parser');
-const path = require('path');
+var passport = require('passport');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var mongoStore = require('connect-mongo')({
+		session: session
+	});
+var path = require('path');
 
-require('./database.js');
+var db = require('./database.js');
+
+require('./models/ShowPiece.js');
+require('./models/User.js');
+// Bootstrap passport config
+require('./passport')();
+
 
 var app = new express();
 
@@ -30,6 +42,24 @@ app.use(cors())
   console.log('Node app is running on port', app.get('port'));
 });
 
+// CookieParser should be above session
+	app.use(cookieParser());
+
+	// Express MongoDB session storage
+	app.use(session({
+		saveUninitialized: true,
+		resave: true,
+		secret: 'eparts',
+		store: new mongoStore({
+			mongooseConnection: db.connection
+			// collection: 'sessions'
+		})
+	}));
+
+app.use(passport.initialize());
+	app.use(passport.session());
+
+require('./routes/users.server.routes.js')(app);
 require('./routes/pieces.js')(app);
 
 

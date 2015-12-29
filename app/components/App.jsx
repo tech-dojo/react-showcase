@@ -2,6 +2,7 @@ import React from 'react';
 import ShowCase from './ShowCase.jsx';
 import ShowPiece from './ShowPiece.jsx';
 import Signin from './Signin.jsx';
+import SignOut from './SignOut.jsx';
 import About from './About.jsx';
 import Header from './Header.jsx';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
@@ -17,11 +18,12 @@ else {
 
 export default (props) => {
   return (
- 
+
   <Router history={history}>
     <Route path="/" component={Header}>
         <IndexRoute component={ShowCase}/>
       <Route path="signin" component={Signin} />
+      <Route path="signout" component={SignOut} />
       <Route path="about" component={About} />
         <Route path="showpiece/:id" component={ShowPiece} />
     </Route>

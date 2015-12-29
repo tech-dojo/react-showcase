@@ -33,15 +33,15 @@ class ShowCase extends React.Component {
     _onChange() {
         this.setState( {'pieces':getCatalog()} );
     }
-    
+
     _handleSearch(e){
         this.setState({searchString:e.target.value});
     }
-    
-    
+
+
 
 	render(){
-        
+
         var pieces = this.state.pieces,
             searchString = this.state.searchString.trim().toLowerCase();
 
@@ -54,21 +54,21 @@ class ShowCase extends React.Component {
                 var result = l.artist.toLowerCase().match( searchString ) ||
                     l.title.toLowerCase().match( searchString );
                 if(l.medium){
-                    result = result || l.medium.toLowerCase().match( searchString ); 
+                    result = result || l.medium.toLowerCase().match( searchString );
                 }
                     return result;
             });
 
         }
 		return (
-            
+
 			<div>
-            
+
                 <div className="container marginTop">
                 <div className="search">
                     <TextField
                       value={this.state.searchString} onChange={this._handleSearch.bind(this)} hintText={<span>
-                                    <FontIcon className="fa fa-search fa-1" color="rgb(158, 158, 158)"/> 
+                                    <FontIcon className="fa fa-search fa-1" color="rgb(158, 158, 158)"/>
                                         Search Artist, Title, Medium
                                 </span>}
                       hintStyle={{color: 'rgba(0, 0, 0, 0.41)'}}/>
@@ -82,16 +82,16 @@ class ShowCase extends React.Component {
                             <Link to={`/showpiece/${tile._id}`} key={tile._id}>
                                 <GridTile
                                 title={<span><span className="title-showcase">{tile.title}</span> {tile.medium ? '|' : ''} {tile.medium}</span>}
-                                
+
                                 subtitle={<div><span>by <b>{tile.artist}</b></span><span className="likes-showcase">{tile.likes} <FontIcon className="fa fa-heart" color="#E61E1E"/></span></div>}
-                                actionIcon={<IconButton></IconButton>}> 
+                                actionIcon={<IconButton></IconButton>}>
                                 <img src={tile.url} />
                             </GridTile></Link>
                         )
                     })}
                 </GridList>
 <br/>
-                </div>                       
+                </div>
 			</div>
 		)
 	}

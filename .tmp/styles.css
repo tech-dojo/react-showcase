@@ -54,7 +54,7 @@ button, .button {
 .search {
     margin-bottom: 20px;
     text-align: center;
-    
+
 }
 .search .fa-2{
         text-shadow: 1px 1px 1px #4B4B4C;
@@ -72,7 +72,7 @@ button, .button {
 }
 .likes-showcase .fa{
     padding-left: 5px;
-    
+
 }
 
 .piece-likes{
@@ -101,4 +101,10 @@ button, .button {
 .about{
     text-align: center;
     padding:20px;
+}
+.edit_delete{
+  float:right;
+}
+.edit_delete fa-trash{
+  vertical-align: super;
 }

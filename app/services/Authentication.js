@@ -7,13 +7,15 @@ module.exports = {
     if (token) {
       if (cb) cb(true)
       this.onChange(true)
+      history.pushState(null, '/');
       return
     }
     signIn('/auth/signin', email, pass)
-      .then((g)=>{
+      .then((data)=>{
         localStorage.token = Math.random().toString(36).substring(7);
         if (cb) cb(true)
         this.onChange(true)
+        console.log(history);
         history.pushState(null, '/');
     })
     .catch((err)=>{
