@@ -4,17 +4,14 @@
   "description": "web app using react",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/server.js"
   },
   "author": "Shama H. <shama@tech-dojo.org>",
   "license": "MIT",
-    "scripts": {
-		"start": "node server/server.js"
-	},
-     "engines": {
-        "node": "5.1.0",
-        "npm": "3.3.12"
-    }, 
+  "engines": {
+    "node": "5.1.0",
+    "npm": "3.3.12"
+  },
   "devDependencies": {
     "babelify": "^6.1.1",
     "browser-sync": "^2.7.2",
@@ -26,19 +23,27 @@
   "dependencies": {
     "babel": "^5.5.6",
     "body-parser": "^1.12.4",
+    "connect-mongo": "^1.1.0",
+    "cookie-parser": "^1.4.0",
     "cors": "^2.6.0",
     "ejs": "^2.3.1",
     "express": "^4.12.4",
+    "express-session": "^1.12.1",
+    "glob": "^6.0.3",
     "guid": "0.0.12",
     "gulp-babel": "^6.1.1",
     "history": "^1.13.1",
     "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
     "material-ui": "^0.13.3",
     "mongoose": "^4.0.3",
     "node-jsx": "^0.13.3",
-    "react": "^0.14.0",
+    "nodemailer": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-router": "^1.0.0",
+    "react-router": "latest",
     "react-tap-event-plugin": "^0.2.1",
     "react-tools": "^0.13.3",
     "vinyl-source-stream": "^1.1.0"

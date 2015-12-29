@@ -8,7 +8,7 @@ import DataWrapper from './../../app/components/DataWrapper';
 var ShowPiece = require('./../models/ShowPiece.js');
 
 module.exports = function(app){
-      
+
     const routes = {
         path: '/',
         component: require('./../../app/components/Header'),
@@ -27,10 +27,10 @@ module.exports = function(app){
                 component: require('./../../app/components/ShowPiece')
             }]
     };
-    
-    app.use((req, res, next) =>{ 
+
+    app.use((req, res, next) =>{
      const location = createLocation(req.path);
-    
+
       // Note that req.url here should be the full URL path from
       // the original request, including the query string.
           match({ routes, location}, (error, redirectLocation, renderProps) => {
@@ -52,21 +52,21 @@ function renderWithData(req,res, renderProps){
     if(req.url == "/"){
            ShowPiece.find(function(error,doc){
                var data = doc;
-               renderIsoOutput(data, renderProps, res); 
+               renderIsoOutput(data, renderProps, res);
            });
        }else if(req.url.match(/\/showpiece\/.*/)){
            var id = req.url.split(/\/showpiece\//)[1];
            ShowPiece.find({_id:id},function(error,doc){
-            var data = doc[0];
-            renderIsoOutput(data, renderProps, res); 
+            var data = doc;
+            renderIsoOutput(data, renderProps, res);
 		})
-               
+
        }else{
-             renderIsoOutput([], renderProps, res);  
+             renderIsoOutput([], renderProps, res);
        }
 }
 
 function renderIsoOutput(data, renderProps, res){
     var generated = renderToString(<DataWrapper data={ data }><RoutingContext {...renderProps} /></DataWrapper>);
-    res.render('./../app/index.ejs',{reactOutput:generated});   
+    res.render('./../app/index.ejs',{reactOutput:generated});
 }

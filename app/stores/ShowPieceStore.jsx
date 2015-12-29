@@ -11,7 +11,7 @@ function ShowPieceStore(){
 	function triggerListeners(){
         console.log(changeListeners);
 		changeListeners.forEach(function(listener){
-            
+
 			listener(showPieces)	;
 		})
 	};
@@ -23,7 +23,7 @@ function ShowPieceStore(){
             triggerListeners();
         });
     };
-    
+
     function fetchShowPiece(id){
 
         get(`api/pieces/${id}`)
@@ -32,7 +32,7 @@ function ShowPieceStore(){
             triggerListeners();
         });
     };
-    
+
 
 
 	function removeShowPiece(piece){
@@ -48,15 +48,13 @@ function ShowPieceStore(){
 	}
 
 	function addShowPiece(piece){
-		var i = showPieces.push(piece);
-		triggerListeners();
-
 		post("/api/pieces",piece)
-		.then((g)=>{
-			piece._id = g._id;
+		.then((data)=>{
+			showPieces.push(data);
+			triggerListeners();
 		})
 		.catch(()=>{
-			showPieces.splice(i,1);
+			console.log('Error on add');
 		})
 	}
 
@@ -74,7 +72,7 @@ function ShowPieceStore(){
 	function getShowPieces(){
 		return showPieces;
 	};
-    
+
     function getShowPiece(){
 		return piece;
 	};
@@ -82,7 +80,7 @@ function ShowPieceStore(){
 	function onChange(listener){
 		changeListeners.push(listener);
 	}
-    
+
     function removeChangeListener(listener){
         var index = changeListeners.findIndex(i => i === listener);
 		changeListeners.splice(index, 1);
@@ -119,5 +117,3 @@ function ShowPieceStore(){
 }
 
 module.exports = new ShowPieceStore();
-
-
