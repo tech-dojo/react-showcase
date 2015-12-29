@@ -3,9 +3,7 @@
 Demo: http://react-showcase.herokuapp.com/
 
 Sign In credentials:
-
-email: test@tech-dojo.org
-
+email: test@tech-dojo.org,
 pass: abcd5678
 
 ### TechStack
