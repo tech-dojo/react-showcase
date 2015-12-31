@@ -9,7 +9,7 @@ module.exports = function(app){
 	.post(showpieces.create);
 
 	app.route('/showpiece/api/pieces/:id')
-	.get(showpieces.pieceByID)
+	.get(showpieces.read)
 	.delete(users.requiresLogin, showpieces.delete)
 	.put(showpieces.update);
 

@@ -25,19 +25,10 @@ exports.create = function(req, res) {
  * Update a showpiece
  */
 exports.update = function(req, res) {
-  ShowPiece.findOne({
-    _id: req.body._id
-  }, function(err, doc) {
-    if (!doc) {
-      return res.status(404).send();
-    }
+  //implement update
 
-    for (var key in req.body) {
-      doc[key] = req.body[key];
-    };
-    doc.save();
-    res.status(200).send(doc);
-  });
+
+
 
 };
 
@@ -66,7 +57,7 @@ exports.list = function(req, res) {
 /**
  * ShowPiece get by id
  */
-exports.pieceByID = function(req, res) {
+exports.read = function(req, res) {
   ShowPiece.find({
     _id: req.params.id
   }, function(error, doc) {

@@ -64,7 +64,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/users.server.routes.js')(app);
-require('./routes/pieces.js')(app);
+require('./routes/showpieces.server.routes.js')(app);
 
 
 app.use(function(req, res, next) {
