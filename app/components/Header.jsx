@@ -22,6 +22,9 @@ class Header extends React.Component {
   }
   updateAuth(loggedIn) {
     this.setState({loggedIn: loggedIn});
+    if(loggedIn){
+      this.props.history.pushState(null, '/');
+    }
   }
   componentWillMount() {
     auth.onChange = this.updateAuth;
