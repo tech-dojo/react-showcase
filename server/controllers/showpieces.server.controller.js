@@ -26,7 +26,19 @@ exports.create = function(req, res) {
  */
 exports.update = function(req, res) {
   //implement update
+  ShowPiece.findOne({
+    _id: req.body._id
+  }, function(err, doc) {
+    if (!doc) {
+      return res.status(404).send();
+    }
 
+    for (var key in req.body) {
+      doc[key] = req.body[key];
+    };
+    doc.save();
+    res.status(200).send(doc);
+  });
 
 
 
