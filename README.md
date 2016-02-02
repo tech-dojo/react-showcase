@@ -1,5 +1,7 @@
 ### Isomorphic React Web App : Showcase
 
+![demogif](react-showcase.gif?raw=true)
+
 Demo: http://react-showcase.herokuapp.com/
 
 Sign In credentials:
