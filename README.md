@@ -32,6 +32,10 @@ pass: abcd5678
 4. Run app with `gulp serve`
 
 
+### Read More on the [TechDojo Blog](http://www.tech-dojo.org/#!/articles)
+- [Authentication with React-router](http://www.tech-dojo.org/#!/articles/5697fd5ddb99acd646dea1aa)
+- [Isomorphpic React Web App](http://www.tech-dojo.org/#!/articles/56b1af3e8ff769fc29f96ae8)
+
 
 ### License
 
