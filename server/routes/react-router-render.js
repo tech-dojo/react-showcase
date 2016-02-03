@@ -65,7 +65,8 @@ function renderWithData(req, res, renderProps) {
     ShowPiece.find({
       _id: id
     }, function(error, doc) {
-      var data = doc;
+      var data = doc[0];
+      console.log(data);
       renderIsoOutput(data, renderProps, res);
     })
 
