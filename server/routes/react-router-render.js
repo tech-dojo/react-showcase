@@ -1,6 +1,6 @@
 import React from 'react';
 import {renderToString} from 'react-dom/server';
-import {match, RoutingContext} from 'react-router';
+import {match, RouterContext} from 'react-router';
 import createLocation from 'history/lib/createLocation';
 import ShowCase from './../../app/components/ShowCase';
 import DataWrapper from './../../app/components/DataWrapper';
@@ -76,6 +76,6 @@ function renderWithData(req, res, renderProps) {
 }
 
 function renderIsoOutput(data, renderProps, res){
-    var generated = renderToString(<DataWrapper data={ data }><RoutingContext {...renderProps} /></DataWrapper>);
+    var generated = renderToString(<DataWrapper data={ data }><RouterContext {...renderProps} /></DataWrapper>);
     res.render('./../app/index.ejs',{reactOutput:generated});
 }

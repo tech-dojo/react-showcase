@@ -16,12 +16,11 @@ module.exports = {
   unlike: function(piece) {
     dispatcher.dispatch({type: "show-piece:unlike", payload: piece})
   },
-  delete: function(piece, history) {
+  delete: function(piece) {
     dispatcher.dispatch({
       type: "show-piece:delete",
       payload: {
-        data: piece,
-        history: history
+        data: piece
       }
     });
   }

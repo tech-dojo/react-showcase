@@ -15,6 +15,7 @@ class Header extends React.Component {
   constructor(props, context){
     super(props, context);
     this.state= {};
+    this.router = context.router;
     this.state.loggedIn = auth.loggedIn();
     this._handleClick = this._handleClick.bind(this);
     this._menuClick = this._menuClick.bind(this);
@@ -23,7 +24,7 @@ class Header extends React.Component {
   updateAuth(loggedIn) {
     this.setState({loggedIn: loggedIn});
     if(loggedIn){
-      this.props.history.pushState(null, '/');
+      this.router.push('/');
     }
   }
   componentWillMount() {
@@ -138,5 +139,7 @@ class Header extends React.Component {
     this.refs.leftNav.close();
   }
 }
-
+Header.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 export default Header;

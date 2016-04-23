@@ -5,13 +5,13 @@ import Signin from './Signin.jsx';
 import SignOut from './SignOut.jsx';
 import About from './About.jsx';
 import Header from './Header.jsx';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-import createMemoryHistory from 'history/lib/createMemoryHistory';
+import { browserHistory, createMemoryHistory } from 'react-router';
+// import createMemoryHistory from 'history/lib/createMemoryHistory';
 import { Router, Route, IndexRoute } from 'react-router';
 
 var history;
 if (typeof(window) !== 'undefined'){
-  history = createBrowserHistory();
+  history = browserHistory;
 }
 else {
   history = createMemoryHistory(); //This kind of history is needed for server-side rendering.
