@@ -10,7 +10,7 @@ pass: abcd5678
 
 ### TechStack
 - ReactJS (v0.14.3)
-- React-Router (v1.0.3)
+- React-Router (v2.3.0)
 - Material UI (v0.13.3)
 - Express.js
 - Passport
