@@ -1,6 +1,7 @@
 import React from 'react';
 import ShowPieceAction from './../stores/ShowPieceActionCreator.jsx';
 import Dialog from 'material-ui/lib/dialog';
+import FlatButton from 'material-ui/lib/flat-button';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import TextField from 'material-ui/lib/text-field';
 
@@ -8,9 +9,8 @@ class ShowPieceAdd extends React.Component {
   constructor(props, context){
     super(props, context);
     this._handleAddDialogTap = this._handleAddDialogTap.bind(this);
-    this.newPiece = {};
     this.state = {};
-    this.state['openDialogStandardActions'] = false;
+    this.state.open = false;
     this._handleRequestClose = this._handleRequestClose.bind(this);
     this._onDialogSubmit = this._onDialogSubmit.bind(this);
     this._handleContributorChange =this._handleContributorChange.bind(this);
@@ -21,67 +21,72 @@ class ShowPieceAdd extends React.Component {
   }
   _handleAddDialogTap(){
     this.setState({
-      openDialogStandardActions: true,
+      open: true
     });
   }
   _handleRequestClose() {
     this.setState({
-      openDialogStandardActions: false,
+      open: false
     });
   }
   _onDialogSubmit(){
-    if(!this.newPiece.url){
+    if(!this.state.url){
       this.setState({
         urlErrorText:'This field is required.'
       });
-    }else if(!this.newPiece.title){
+    }else if(!this.state.title){
       this.setState({
         titleErrorText:'This field is required.'
       });
-    }else if(!this.newPiece.artist){
+    }else if(!this.state.artist){
       this.setState({
         artistErrorText:'This field is required.'
       });
     }else{
       ShowPieceAction.add({
-        title: this.newPiece.title,
-        artist: this.newPiece.artist,
-        medium: this.newPiece.medium,
-        contributor: this.contributor,
-        url: this.newPiece.url
+        title: this.state.title,
+        artist: this.state.artist,
+        medium: this.state.medium,
+        contributor: this.state.contributor,
+        url: this.state.url
       });
       this.setState({
-        openDialogStandardActions: false,
+        open: false,
       });
     }
   }
 
   render(){
-    let standardActions = [
-      {text: 'Cancel'},
-      {text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit'},
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        secondary={true}
+        onClick={this._handleRequestClose}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        onClick={this._onDialogSubmit}
+      />,
     ];
     return (
       <span>
         <FloatingActionButton
           iconClassName="fa fa-plus fa-2"
           secondary={true}
-          onTouchTap={this._handleAddDialogTap}/>
+          onClick={this._handleAddDialogTap}/>
         <Dialog
-          ref="standardDialog"
           title="Add Art Piece"
-          actions={standardActions}
-          actionFocus="submit"
-          modal={this.state.modal}
-          open={this.state.openDialogStandardActions}
-          onRequestClose={this._handleRequestClose}>
+          actions={actions}
+          modal={true}
+          open={this.state.open}>
           <form>
             <TextField
               hintText="Enter URL Link"
               errorText={this.state.urlErrorText}
               floatingLabelText="Art Link"
               onChange={this._handleUrlChange}
-              value={this.newPiece.url}
+              value={this.state.url}
               />
             <br/>
             <TextField
@@ -89,7 +94,7 @@ class ShowPieceAdd extends React.Component {
               errorText={this.state.titleErrorText}
               floatingLabelText="Art Title"
               onChange={this._handleTitleChange}
-              value={this.newPiece.title}
+              value={this.state.title}
               />
             <br/>
             <TextField
@@ -97,21 +102,21 @@ class ShowPieceAdd extends React.Component {
               errorText={this.state.artistErrorText}
               floatingLabelText="Artist"
               onChange={this._handleArtistChange}
-              value={this.newPiece.artist}
+              value={this.state.artist}
               />
             <br/>
             <TextField
               hintText="Enter medium"
               floatingLabelText="Medium"
               onChange={this._handleMediumChange}
-              value={this.newPiece.medium}
+              value={this.state.medium}
               />
             <br/>
             <TextField
               hintText="Your name"
               floatingLabelText="Contributor"
               onChange={this._handleContributorChange}
-              value={this.newPiece.contributor}
+              value={this.state.contributor}
               />
 
 
@@ -125,7 +130,7 @@ class ShowPieceAdd extends React.Component {
     )
   }
   _handleUrlChange(e){
-    this.newPiece.url = e.target.value;
+    this.setState({url : e.target.value});
     var errorMsg = '';
     if(!e.target.value){
       errorMsg ='This field is required.';
@@ -137,25 +142,25 @@ class ShowPieceAdd extends React.Component {
     });
   }
   _handleTitleChange(e){
-    this.newPiece.title = e.target.value;
+    this.setState({title : e.target.value});
     this.setState({
       titleErrorText: e.target.value ? '' : 'This field is required.'
     });
   }
 
   _handleArtistChange(e){
-    this.newPiece.artist = e.target.value;
+    this.setState({artist : e.target.value});
     this.setState({
       artistErrorText: e.target.value ? '' : 'This field is required.'
     });
   }
 
   _handleMediumChange(e){
-    this.newPiece.medium = e.target.value;
+    this.setState({medium : e.target.value});
   }
 
   _handleContributorChange(e){
-    this.newPiece.contributor = e.target.value;
+    this.setState({contributor : e.target.value});
   }
 }
 

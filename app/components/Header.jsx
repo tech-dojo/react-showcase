@@ -2,7 +2,8 @@ import React from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 import IconButton from 'material-ui/lib/icon-button';
 import FlatButton from 'material-ui/lib/flat-button';
-import MenuItem from 'material-ui/lib/menu/menu-item';
+import Menu from 'material-ui/lib/menus/menu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
 import LinkMenuItem from 'material-ui/lib/menu/link-menu-item';
 import SubheaderMenuItem from 'material-ui/lib/menu/subheader-menu-item';
 import LeftNav from 'material-ui/lib/left-nav';
@@ -17,6 +18,7 @@ class Header extends React.Component {
     this.state= {};
     this.router = context.router;
     this.state.loggedIn = auth.loggedIn();
+    this.state.open = false;
     this._handleClick = this._handleClick.bind(this);
     this._menuClick = this._menuClick.bind(this);
     this.updateAuth = this.updateAuth.bind(this);
@@ -36,37 +38,30 @@ class Header extends React.Component {
     return (
       <div id="page_container">
         <LeftNav
-          ref="leftNav"
-          docked={false}
-          header={
-            <div className="menu_title">        <FontIcon className="fa fa-paint-brush" color="#00bcd4"/>Menu</div>
-          }>
-          <Link to="/" className="menuLink">
+          open={this.state.open}>
+          <div className="menu_title" onClick={this._menuClick}>        <FontIcon className="fa fa-paint-brush" color="#00bcd4"/>Menu</div>
+          <Link to="/" className="menuLink" onClick={this._menuClick}>
             <MenuItem
               className="menuItem"
-              onTouchTap={this._menuClick}
               index={0}>Showcase</MenuItem>
           </Link>
-          <Link to="/about" className="menuLink">
+          <Link to="/about" className="menuLink" onClick={this._menuClick}>
             <MenuItem
               className="menuItem"
-              onTouchTap={this._menuClick}
               index={1}>About</MenuItem>
           </Link>
           {!this.state.loggedIn ? (
-            <Link to="/signin" className="menuLink">
+            <Link to="/signin" className="menuLink" onClick={this._menuClick}>
               <MenuItem
                 className="menuItem"
-                onTouchTap={this._menuClick}
                 index={2}>
                 Sign In
               </MenuItem>
             </Link>
           ):(
-            <Link to="/signout" className="menuLink">
+            <Link to="/signout" className="menuLink" onClick={this._menuClick}>
               <MenuItem
                 className="menuItem"
-                onTouchTap={this._menuClick}
                 index={2}>
                 Sign Out
               </MenuItem>
@@ -95,6 +90,7 @@ class Header extends React.Component {
 
         </LeftNav>
 
+
         <AppBar
           title={
             <Link to="/" className="header_title">
@@ -104,7 +100,15 @@ class Header extends React.Component {
               </span>
             </Link>
           }
-          onLeftIconButtonTouchTap={this._handleClick}>
+          iconElementLeft={
+              <IconButton
+                onClick={ this._handleClick }>
+                <FontIcon
+                  className="fa fa-reorder main_title"
+                  color="white"/>
+              </IconButton>
+          }>
+
           <a
             className="social_links"
             target="_blank"
@@ -131,12 +135,11 @@ class Header extends React.Component {
   _handleClick(e) {
     e.preventDefault();
 
-    this.refs.leftNav.toggle();
+    this.setState({open: !this.state.open});
   }
   _menuClick(e) {
-
-    console.log(this.refs.leftNav);
-    this.refs.leftNav.close();
+        console.log("tappef");
+    this.setState({open: false});
   }
 }
 Header.contextTypes = {
