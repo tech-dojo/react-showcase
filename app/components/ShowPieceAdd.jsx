@@ -1,9 +1,9 @@
 import React from 'react';
 import ShowPieceAction from './../stores/ShowPieceActionCreator.jsx';
-import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
-import TextField from 'material-ui/lib/text-field';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import TextField from 'material-ui/TextField';
 
 class ShowPieceAdd extends React.Component {
   constructor(props, context){

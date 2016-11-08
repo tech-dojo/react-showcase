@@ -1,17 +1,11 @@
 import React from 'react';
-import Card from 'material-ui/lib/card/card';
-import CardActions from 'material-ui/lib/card/card-actions';
-import CardExpandable from 'material-ui/lib/card/card-expandable';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardMedia from 'material-ui/lib/card/card-media';
-import CardText from 'material-ui/lib/card/card-text';
-import CardTitle from 'material-ui/lib/card/card-title';
-import Paper from 'material-ui/lib/paper';
-import IconButton from 'material-ui/lib/icon-button';
-import FontIcon from 'material-ui/lib/font-icon';
+import {Card, CardActions, CardHeader, CardMedia, CardText, CardTitle} from 'material-ui/Card';
+import Paper from 'material-ui/Paper';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 import ShowPieceStore from './../stores/ShowPieceStore.jsx';
 import ShowPieceAction from './../stores/ShowPieceActionCreator.jsx';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 import auth from './../services/Authentication';
 
@@ -64,7 +58,7 @@ class ShowPiece extends React.Component {
                   <CardTitle
                     title={
                       <span className="title-piece">
-                        {this.state.piece.title}
+                        {this.state.piece.title}&nbsp;
                         <span className="sub">
                           {this.state.piece.medium ? '|' : ''} {this.state.piece.medium}
                         </span>

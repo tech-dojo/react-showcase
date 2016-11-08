@@ -1,11 +1,10 @@
 "use strict";
 
 import React from 'react';
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import IconButton from 'material-ui/lib/icon-button';
-import FontIcon from 'material-ui/lib/font-icon';
-import TextField from 'material-ui/lib/text-field';
+import {GridList, GridTile} from 'material-ui/GridList';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import TextField from 'material-ui/TextField';
 import ShowPieceStore from './../stores/ShowPieceStore.jsx';
 import ShowPieceAdd from './ShowPieceAdd.jsx';
 import { Link } from 'react-router';
@@ -88,7 +87,7 @@ class ShowCase extends React.Component {
                     title={
                       <span>
                         <span className="title-showcase">
-                          {tile.title}
+                          {tile.title}&nbsp;
                         </span>
                         {tile.medium ? '|' : ''} {tile.medium}
                       </span>

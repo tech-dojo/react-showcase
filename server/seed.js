@@ -14,9 +14,9 @@ var initial = [{
   medium: 'Oil on Canvas',
 
 }, {
-  url: 'http://feminspire.com/wp-content/uploads/2013/05/modern-art.jpg',
+  url: 'https://afremov.com/image.php?type=P&id=18598',
   title: 'RainAutumn',
-  artist: 'pashminu',
+  artist: 'leonid-afremov',
   likes: 40,
   pending: false,
   contributor: 'eric',
@@ -38,7 +38,7 @@ var initial = [{
 }, {
   url: 'http://funguerilla.com/wp-content/uploads/2010/06/leonid-afremov202.jpg',
   title: 'Lina',
-  artist: 'fancycravel',
+  artist: 'leonid-afremov',
   likes: 3,
   pending: false,
   contributor: 'Cookie',

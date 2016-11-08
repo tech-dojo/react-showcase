@@ -1,7 +1,7 @@
 import React from 'react';
-import Paper from 'material-ui/lib/paper';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import auth from './../services/Authentication';
 
 class Signin extends React.Component {

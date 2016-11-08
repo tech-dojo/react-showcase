@@ -1,13 +1,15 @@
 import React from 'react';
-import AppBar from 'material-ui/lib/app-bar';
-import IconButton from 'material-ui/lib/icon-button';
-import FlatButton from 'material-ui/lib/flat-button';
-import Menu from 'material-ui/lib/menus/menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import LinkMenuItem from 'material-ui/lib/menu/link-menu-item';
-import SubheaderMenuItem from 'material-ui/lib/menu/subheader-menu-item';
-import LeftNav from 'material-ui/lib/left-nav';
-import FontIcon from 'material-ui/lib/font-icon';
+import AppBar from 'material-ui/AppBar';
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import IconButton from 'material-ui/IconButton';
+import FlatButton from 'material-ui/FlatButton';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import Subheader from 'material-ui/Subheader';
+import Divider from 'material-ui/Divider';
+import Drawer from 'material-ui/Drawer';
+import FontIcon from 'material-ui/FontIcon';
 import ShowCase from './ShowCase.jsx';
 import { Link } from 'react-router';
 import auth from './../services/Authentication';
@@ -23,6 +25,9 @@ class Header extends React.Component {
     this._menuClick = this._menuClick.bind(this);
     this.updateAuth = this.updateAuth.bind(this);
   }
+  getChildContext() {
+    return { muiTheme: getMuiTheme(baseTheme) };
+  }
   updateAuth(loggedIn) {
     this.setState({loggedIn: loggedIn});
     if(loggedIn){
@@ -37,21 +42,33 @@ class Header extends React.Component {
     let _title = "Showcase";
     return (
       <div id="page_container">
-        <LeftNav
+        <Drawer
           open={this.state.open}>
-          <div className="menu_title" onClick={this._menuClick}>        <FontIcon className="fa fa-paint-brush" color="#00bcd4"/>Menu</div>
-          <Link to="/" className="menuLink" onClick={this._menuClick}>
+          <div
+            className="menu_title"
+            onClick={this._menuClick}>
+            <FontIcon className="fa fa-paint-brush" color="#00bcd4"/>Menu</div>
+          <Link
+            to="/"
+            className="menuLink"
+            onClick={this._menuClick}>
             <MenuItem
               className="menuItem"
               index={0}>Showcase</MenuItem>
           </Link>
-          <Link to="/about" className="menuLink" onClick={this._menuClick}>
+          <Link
+            to="/about"
+            className="menuLink"
+            onClick={this._menuClick}>
             <MenuItem
               className="menuItem"
               index={1}>About</MenuItem>
           </Link>
           {!this.state.loggedIn ? (
-            <Link to="/signin" className="menuLink" onClick={this._menuClick}>
+            <Link
+              to="/signin"
+              className="menuLink"
+              onClick={this._menuClick}>
               <MenuItem
                 className="menuItem"
                 index={2}>
@@ -59,7 +76,10 @@ class Header extends React.Component {
               </MenuItem>
             </Link>
           ):(
-            <Link to="/signout" className="menuLink" onClick={this._menuClick}>
+            <Link
+              to="/signout"
+              className="menuLink"
+              onClick={this._menuClick}>
               <MenuItem
                 className="menuItem"
                 index={2}>
@@ -67,28 +87,31 @@ class Header extends React.Component {
               </MenuItem>
             </Link>
           )}
-          <div className="menuSubheader">
-            <SubheaderMenuItem
-              index={3}
-              text='Social'
-              />
-          </div>
-          <LinkMenuItem
-            index={4}
-            text='GitHub'
-            payload="https://github.com/tech-dojo"
-            target="_blank"
-            className="menuLink"
-            />
-          <LinkMenuItem
-            index={4}
-            text='Twitter'
-            payload="https://twitter.com/dojo_tech"
-            target="_blank"
-            className="menuLink"
-            />
+          <Divider />
+          <Subheader>Social</Subheader>
 
-        </LeftNav>
+            <a
+              href="https://github.com/tech-dojo"
+              className="menuLink"
+              target="_blank">
+          <MenuItem
+            index={4}
+            className="menuLink">
+            GitHub
+            </MenuItem>
+          </a>
+          <a
+            href="https://twitter.com/dojo_tech"
+            className="menuLink"
+            target="_blank">
+        <MenuItem
+          index={4}
+
+          className="menuLink">
+          Twitter
+          </MenuItem>
+        </a>
+        </Drawer>
 
 
         <AppBar
@@ -101,12 +124,12 @@ class Header extends React.Component {
             </Link>
           }
           iconElementLeft={
-              <IconButton
-                onClick={ this._handleClick }>
-                <FontIcon
-                  className="fa fa-reorder main_title"
-                  color="white"/>
-              </IconButton>
+            <IconButton
+              onClick={ this._handleClick }>
+              <FontIcon
+                className="fa fa-reorder main_title"
+                color="white"/>
+            </IconButton>
           }>
 
           <a
@@ -138,11 +161,14 @@ class Header extends React.Component {
     this.setState({open: !this.state.open});
   }
   _menuClick(e) {
-        console.log("tappef");
+    console.log("tappef");
     this.setState({open: false});
   }
 }
 Header.contextTypes = {
   router: React.PropTypes.object.isRequired
+};
+Header.childContextTypes = {
+  muiTheme: React.PropTypes.object.isRequired,
 };
 export default Header;
