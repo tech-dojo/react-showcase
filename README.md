@@ -9,9 +9,9 @@ email: test@tech-dojo.org,
 pass: abcd5678
 
 ### TechStack
-- ReactJS (v15.0.1)
+- ReactJS (v15.3.2)
 - React-Router (v2.3.0)
-- Material UI (v0.14.4)
+- Material UI (v0.16.1)
 - Express.js
 - Passport
 - Node.js
